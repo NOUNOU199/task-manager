@@ -30,13 +30,12 @@ const userSchema = new mongoose.Schema(
 
 // MIDDLEWARE MONGOOSE (pre-save hook)
 // S'exécute AVANT chaque sauvegarde
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
   // Si le mot de passe n'a pas été modifié, on passe
-  if (!this.isModified('password')) return next();
+  if (!this.isModified('password')) return;
   
   // Sinon, on le hash avec bcrypt (coût 12 = très sécurisé)
   this.password = await bcrypt.hash(this.password, 12);
-  next();
 });
 
 // MÉTHODE D'INSTANCE

@@ -15,7 +15,7 @@ const app = express();
 // CORS (Cross-Origin Resource Sharing) permet d'autoriser ces requêtes.
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Autoriser SEULEMENT React en dev
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // Autoriser React en dev
     credentials: true, // Autoriser les cookies/headers d'auth
   })
 );
